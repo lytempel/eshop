@@ -11,13 +11,19 @@
 
 <div ng-app="app" ng-controller="productsCtrl">
     <h1>List of products</h1>
-    <ul>
-        <li ng-repeat="p in products">
-            {{ p.name }}
 
-        </li>
-
-    </ul>
+    <table border="1" width="100%">
+        <tr>
+            <th ng-click="orderByFun('name')">Name</th>
+            <th ng-click="orderByFun('store')">Store</th>
+            <th ng-click="orderByFun('instock')">In stock</th>
+        </tr>
+        <tr ng-repeat="p in products | orderBy:orderByClick">
+            <td>{{p.name}}</td>
+            <td>{{p.store}}</td>
+            <td>{{p.instock}}</td>
+        </tr>
+    </table>
 
 </div>
 
