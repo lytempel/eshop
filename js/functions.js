@@ -10,8 +10,13 @@ app.controller('productsCtrl', function($scope, $http) {
     }, function(response) {
         $scope.products = "Something went wrong";
     });
-    $scope.orderByFun = function(x) {
-        $scope.orderByClick = x;
+
+    $scope.propertyName = '';
+    $scope.reverse = '';
+
+    $scope.orderByFun = function(propertyName) {
+        $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+        $scope.propertyName = propertyName;
     };
 
 });
