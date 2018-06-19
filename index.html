@@ -24,9 +24,15 @@
     <table border="1" width="90%" style="margin:0 auto;">
         <tr>
             <th></th>
-            <th class="pointer" ng-click="orderByFun('name')">Name▼</th>
-            <th class="pointer" ng-click="orderByFun('store')">Store▼</th>
-            <th class="pointer" ng-click="orderByFun('instock')">In stock▼</th>
+            <th class="pointer" ng-click="orderByFun('name')">Name
+                <span class="sortAscDesc" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th class="pointer" ng-click="orderByFun('store')">Store
+                <span class="sortAscDesc" ng-show="propertyName === 'store'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th class="pointer" ng-click="orderByFun('instock')">In stock
+                <span class="sortAscDesc" ng-show="propertyName === 'instock'" ng-class="{reverse: reverse}"></span>
+            </th>
         </tr>
         <tr ng-repeat="p in products | orderBy:propertyName:reverse">
             <td>{{ $index + 1 }}</td>

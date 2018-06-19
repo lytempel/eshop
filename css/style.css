@@ -40,6 +40,14 @@ table th {
     cursor: pointer;
 }
 
+.sortAscDesc:after {
+    content: '\25b2';
+}
+.sortAscDesc.reverse:after {
+    content: '\25bc';
+}
+
+
 .clearfix::after {
     content: "";
     clear: both;
