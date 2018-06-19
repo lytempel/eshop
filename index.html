@@ -5,28 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
     <title>Simple e-shop website</title>
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 </head>
 <body>
+<nav class="topnavbar navbar-fixed-top" id="topnav">
+    <a href="#">Cart</a>
+    <a href="#">Shop</a>
+</nav>
+
 
 <div ng-app="app" ng-controller="productsCtrl">
     <h1>List of products</h1>
 
-    <table border="1" width="100%">
+    <table border="1" width="90%" style="margin:0 auto;">
         <tr>
-            <th ng-click="orderByFun('name')">Name</th>
-            <th ng-click="orderByFun('store')">Store</th>
-            <th ng-click="orderByFun('instock')">In stock</th>
+            <th></th>
+            <th class="pointer" ng-click="orderByFun('name')">Name▼</th>
+            <th class="pointer" ng-click="orderByFun('store')">Store▼</th>
+            <th class="pointer" ng-click="orderByFun('instock')">In stock▼</th>
         </tr>
         <tr ng-repeat="p in products | orderBy:orderByClick">
-            <td>{{p.name}}</td>
+            <td>{{ $index + 1 }}</td>
+            <td><a data-toggle="modal" data-target="#productModal" ng-click="requestProductInfo(p.id)">{{p.name}}</a></td>
             <td>{{p.store}}</td>
             <td>{{p.instock}}</td>
         </tr>
     </table>
 
-</div>
+    <div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="productModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Product details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h2>{{productInfo.name}}</h2><br>
+                        <strong>Product-code:</strong> {{productInfo.productcode}}<br>
+                        <strong>In stock:</strong> {{productInfo.instock}}<br>
+                        <strong>Store:</strong> {{productInfo.store}} <br>
+                        <strong>Department:</strong> {{productInfo.department}} <br>
+                        <strong>Description:</strong> {{productInfo.description}} <br>
+                        <h3>Price: {{productInfo.price}} {{productInfo.currency}}<br></h3>
+                        <img ng-src="{{productInfo.image}}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 <script src="js/functions.js"></script>
 </body>
