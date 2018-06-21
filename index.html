@@ -13,7 +13,7 @@
 </head>
 <body>
 <nav class="topnavbar navbar-fixed-top" id="topnav">
-    <a href="#">Cart</a>
+    <a class="pointer" data-toggle="modal" data-target="#cartModal">Cart</a>
     <a href="#">Shop</a>
 </nav>
 
@@ -21,7 +21,7 @@
 <div ng-app="app" ng-controller="productsCtrl">
     <h1>List of products</h1>
 
-    <table border="1" width="90%" style="margin:0 auto;">
+    <table border="1" width="50%" style="margin:0 auto;">
         <tr>
             <th></th>
             <th class="pointer" ng-click="orderByFun('name')">Name
@@ -35,7 +35,7 @@
             </th>
         </tr>
         <tr ng-repeat="p in products | orderBy:propertyName:reverse">
-            <td>{{ $index + 1 }}</td>
+            <td style="text-align: center;">{{ $index + 1 }}</td>
             <td><a data-toggle="modal" data-target="#productModal" ng-click="requestProductInfo(p.id)">{{p.name}}</a></td>
             <td>{{p.store}}</td>
             <td>{{p.instock}}</td>
@@ -44,7 +44,7 @@
 
     <div>
 
-        <!-- Modal -->
+        <!--Product modal -->
         <div class="modal fade" id="productModal" role="dialog">
             <div class="modal-dialog">
 
@@ -56,13 +56,43 @@
                     </div>
                     <div class="modal-body clearfix">
                         <h2>{{productInfo.name}}</h2><br>
+                        <span style="float: left; width:50%;">
                         <strong>Product-code:</strong> {{productInfo.productcode}}<br>
                         <strong>In stock:</strong> {{productInfo.instock}}<br>
                         <strong>Store:</strong> {{productInfo.store}} <br>
                         <strong>Department:</strong> {{productInfo.department}} <br>
                         <strong>Description:</strong> {{productInfo.description}} <br>
-                        <h3>Price: {{productInfo.price}} {{productInfo.currency}}<br></h3>
-                        <img alt="Picture of {{productInfo.name}}" ng-src="{{productInfo.image}}" style="float:right;">
+                        <h3>Price: {{productInfo.price}} {{productInfo.currency}}</h3>
+                        </span>
+                        <span style="float: right;">
+                        <img alt="Picture of {{productInfo.name}}" ng-src="{{productInfo.image}}">
+                        </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="addToCart()">Add to cart</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Cart modal -->
+        <div class="modal fade" id="cartModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cart</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table width="100%">
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
