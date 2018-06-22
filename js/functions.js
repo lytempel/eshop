@@ -9,6 +9,16 @@ app.controller('productsCtrl', ['$scope', '$cookies', '$http', function ($scope,
         $scope.requestProductInfo = function(id) {
             $scope.productInfo = response.data[id-1];
         };
+        
+        $scope.countInCart = function(id, cart) {
+            var item;
+            for (item of cart) {
+                if (item.id == id) {
+                    return item.count;
+                }
+            }
+            return 0;
+        }
 
         if(!angular.isUndefined($cookies.get('total'))) {
             $scope.total = parseFloat($cookies.get('total'));

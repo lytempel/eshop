@@ -52,12 +52,12 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Product details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body clearfix">
                         <h2>{{productInfo.name}}</h2><br>
-                        <span class="float-left" style="width:50%;">
+                        <span class="float-left" style="width:40%;">
                         <strong>Product-code:</strong> {{productInfo.productcode}}<br><br>
                         <strong>In stock:</strong> {{productInfo.instock}}<br><br>
                         <strong>Store:</strong> {{productInfo.store}} <br><br>
@@ -69,8 +69,8 @@
                         </span>
                     </div>
                     <div class="modal-footer">
-                        <span class="float-left price">Price: {{productInfo.price}} {{productInfo.currency}}</span>
-                        <span class="float-right"><button type="button" class="btn btn-success" ng-click="addToCart(productInfo)">Add to cart</button>
+                        <span class="float-left price mr-auto">Price: {{productInfo.price}} {{productInfo.currency}}</span>
+                        <span class="float-right"><button type="button" class="btn btn-success" ng-click="addToCart(productInfo);" ng-bind="'Add to cart (' + countInCart(productInfo.id, cart) + ')'"></button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></span>
                     </div>
                 </div>
@@ -85,8 +85,8 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Cart</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
 
@@ -109,7 +109,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <span style="font-size: 22px;">Total: {{total}} EUR </span>
+                        <span style="font-size: 22px; padding-right: 15px;">Total: {{total}} EUR </span>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
