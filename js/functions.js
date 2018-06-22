@@ -9,7 +9,7 @@ app.controller('productsCtrl', ['$scope', '$cookies', '$http', function ($scope,
         $scope.requestProductInfo = function(id) {
             $scope.productInfo = response.data[id-1];
         };
-        
+
         $scope.countInCart = function(id, cart) {
             var item;
             for (item of cart) {
